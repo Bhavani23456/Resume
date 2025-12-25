@@ -1,0 +1,87 @@
+resume.html
+<DOCTYPE html>
+<html>
+<head>
+  <title>Resume Preview</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="resume">
+
+  <div class="left">
+    {% if data.photo %}
+      <img src="/{{ data.photo }}" class="photo">
+    {% endif %}
+
+    <h1>{{ data.name }}</h1>
+    <p>{{ data.email }}</p>
+    <p>{{ data.phone }}</p>
+    <p>{{ data.linkedin }}</p>
+
+    {% if data.skills %}
+    <h3>Skills</h3>
+    <ul>
+      {% for s in data.skills %}
+        <li>{{ s }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+
+    <div class="right">
+
+{% if data.education %}
+<h3>Education</h3>
+<ul>
+  {% for line in data.education.split('\n') %}
+    {% if line.strip() %}
+      <li>{{ line }}</li>
+    {% endif %}
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if data.projects %}
+<h3>Projects</h3>
+<ul>
+  {% for line in data.projects.split('.') %}
+    {% if line.strip() %}
+      <li>{{ line }}</li>
+    {% endif %}
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if data.internships %}
+<h3>Internships</h3>
+<ul>
+  {% for line in data.internships.split('.') %}
+    {% if line.strip() %}
+      <li>{{ line }}</li>
+    {% endif %}
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if data.certifications %}
+<h3>Certifications</h3>
+<ul>
+  {% for line in data.certifications.split('.') %}
+    {% if line.strip() %}
+      <li>{{ line }}</li>
+    {% endif %}
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if data.signature %}
+  <img src="/{{ data.signature }}" class="signature">
+{% endif %}
+
+</div>
+
+<a href="/download" class="download">Download PDF</a>
+
+</body>
+</html>
